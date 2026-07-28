@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Admin - UD. Produsen Rumah Kayu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: 'Inter', sans-serif;
+            --bg: #f5ecde;
+            --surface: #ffffff;
+            --surface-soft: #f7efe2;
+            --surface-strong: #e8d5bc;
+            --text: #332715;
+            --text-muted: #6f5d4a;
+            --accent: #b07e48;
+            --accent-dark: #8b5a30;
+            --success: #25d366;
+            --danger: #b13e3e;
+            --border: rgba(131, 86, 44, 0.15);
+            --shadow: 0 18px 45px rgba(78, 49, 24, 0.10);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            min-height: 100vh;
+            background: radial-gradient(circle at top, #fff7ee 0%, var(--bg) 55%);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: url('logo.png') center top / 34rem no-repeat;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 2rem));
+            margin: 0 auto;
+            padding: 1.2rem 0 2rem;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #e7c1a0 0%, #a86a34 100%);
+            color: #2a160e;
+            padding: 2.2rem 1.5rem 2.4rem;
+            border-radius: 2rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 42rem;
+            height: 42rem;
+            transform: translate(-50%, -50%);
+            background: url('logo.png') center center / contain no-repeat;
+            opacity: 0.06;
+            pointer-events: none;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(255,255,255,0.18), transparent 35%);
+            pointer-events: none;
+        }
+
+        .brand {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .brand h1 {
+            font-size: clamp(1.9rem, 4vw, 2.65rem);
+            letter-spacing: -0.5px;
+            line-height: 1.05;
+            font-weight: 900;
+            max-width: 720px;
+            color: #2d1b0f;
+        }
+
+        .badge {
+            background: rgba(255, 247, 229, 0.98);
+            color: #5a3821;
+            padding: 0.55rem 1rem;
+            border-radius: 999px;
+            font-size: 0.86rem;
+            font-weight: 800;
+            border: 1px solid rgba(171, 116, 62, 0.18);
+        }
+
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.95rem;
+            padding: 0.8rem 1rem;
+            border-radius: 1.4rem;
+            background: rgba(255,255,255,0.94);
+            border: 1px solid rgba(171, 116, 62, 0.2);
+        }
+
+        .company-logo {
+            width: 64px;
+            height: 64px;
+            object-fit: cover;
+            border-radius: 18px;
+            background: #fff;
+        }
+
+        .hero-description {
+            margin-top: 1.4rem;
+            max-width: 720px;
+            color: #3f2a1b;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .hero-highlight {
+            margin-top: 1.8rem;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+            z-index: 1;
+        }
+
+        .highlight-card {
+            background: rgba(255, 248, 235, 0.95);
+            border: 1px solid rgba(171, 116, 62, 0.18);
+            border-radius: 1.4rem;
+            padding: 1rem 1.2rem;
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .highlight-card i {
+            color: #f0d1a4;
+            font-size: 1.3rem;
+            min-width: 36px;
+        }
+
+        .highlight-card span {
+            display: block;
+            font-weight: 700;
+            color: #2f1d10;
+        }
+
+        .highlight-card small {
+            display: block;
+            color: #5d4734;
+            margin-top: 0.2rem;
+            font-size: 0.92rem;
+        }
+
+        .contact-row {
+            margin-top: 1.8rem;
+            background: rgba(255,255,255,0.98);
+            color: var(--text);
+            border-radius: 1.5rem;
+            padding: 1rem 1.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.9rem;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+        }
+
+        .contact-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            padding: 0.55rem 0.95rem;
+            border-radius: 999px;
+            background: #fff8f0;
+            color: #3f2a1b;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .whatsapp-banner {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+        }
+
+        .btn-contact {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #25d366;
+            color: #fff;
+            text-decoration: none;
+            padding: 0.85rem 1.2rem;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: 0 14px 28px rgba(37,211,102,0.2);
+            transition: background 0.18s ease, transform 0.18s ease;
+        }
+
+        .btn-contact:hover {
+            background: #1ca65a;
+            transform: translateY(-1px);
+        }
+
+        .share-section {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 1.4rem;
+            z-index: 1;
+        }
+
+        .btn-share {
+            background: var(--accent);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 999px;
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.18s ease, background 0.18s ease;
+            font-size: 0.95rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .btn-share:hover {
+            background: #964d22;
+            transform: translateY(-1px);
+        }
+
+        .section-title {
+            margin: 2rem 0 0.8rem;
+            font-weight: 800;
+            font-size: 1.7rem;
+            letter-spacing: -0.4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text);
+        }
+
+        .section-title::before {
+            content: '';
+            width: 3.5rem;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 999px;
+        }
+
+        .admin-panel {
+            background: var(--surface);
+            border-radius: 1.6rem;
+            padding: 1.15rem 1.4rem;
+            margin: 1.4rem 0;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 16px 30px rgba(79, 60, 44, 0.06);
+        }
+
+        .admin-panel div {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .btn-admin {
+            background: var(--accent-dark);
+            color: #fff;
+            border: none;
+            padding: 0.63rem 1.25rem;
+            border-radius: 999px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.18s ease, transform 0.18s ease;
+        }
+
+        .btn-admin:hover { transform: translateY(-1px); }
+        .btn-admin.logout { background: #5b5b5b; }
+        .btn-admin.danger { background: var(--danger); }
+
+        .image-paste-zone {
+            border: 2px dashed var(--accent);
+            border-radius: 1rem;
+            padding: 0.95rem 1rem;
+            text-align: center;
+            color: var(--text-muted);
+            background: #fffaf2;
+            cursor: pointer;
+            transition: border-color 0.2s ease, background 0.2s ease;
+            margin-bottom: 0.6rem;
+        }
+
+        .image-paste-zone:focus {
+            outline: 2px solid rgba(176, 126, 72, 0.25);
+            outline-offset: 2px;
+        }
+
+        .image-paste-zone.is-active {
+            border-color: var(--success);
+            background: #f3fff4;
+            color: #1f6b35;
+        }
+
+        .image-preview {
+            display: none;
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            margin-top: 0.7rem;
+            border-radius: 0.9rem;
+            border: 1px solid var(--border);
+            background: linear-gradient(135deg, #fff7ea 0%, #f5e0c4 100%);
+            padding: 0.35rem;
+            box-shadow: 0 10px 24px rgba(80, 53, 26, 0.12);
+        }
+
+        .login-form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 0.8rem;
+            width: min(100%, 420px);
+        }
+
+        .login-form input {
+            flex: 1;
+            min-width: 140px;
+            padding: 0.7rem 1rem;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            font-family: inherit;
+            color: var(--text);
+            background: #fff;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.6rem;
+            margin: 1.5rem 0 2rem;
+        }
+
+        .product-card {
+            background: var(--surface);
+            border-radius: 1.6rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 50px rgba(72, 43, 19, 0.12);
+        }
+
+        .product-img {
+            background: linear-gradient(180deg, rgba(185,110,47,0.14), rgba(120,78,38,0.08));
+            min-height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-dark);
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            min-height: 220px;
+            object-fit: contain;
+            background: #fff;
+        }
+
+        .product-info {
+            padding: 1.25rem 1.35rem 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            flex: 1;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            color: var(--text);
+        }
+
+        .product-desc {
+            font-size: 0.94rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            white-space: pre-line;
+            word-break: break-word;
+        }
+
+        .product-price {
+            font-weight: 800;
+            color: var(--accent-dark);
+            font-size: 1.08rem;
+        }
+
+        .product-stock {
+            font-size: 0.78rem;
+            background: #f4ece5;
+            color: var(--text);
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            border: 1px solid rgba(181, 95, 32, 0.12);
+        }
+
+        .product-actions {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .wa-order {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--success);
+            color: #fff;
+            text-decoration: none;
+            padding: 0.7rem 0.95rem;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .review-section {
+            margin: 2rem 0 1rem;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.4rem;
+            margin-top: 1rem;
+        }
+
+        .review-card {
+            background: #fff;
+            border-radius: 1.4rem;
+            border: 1px solid rgba(171, 136, 93, 0.14);
+            padding: 1.35rem;
+            box-shadow: 0 14px 30px rgba(96, 62, 30, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .review-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .review-card small {
+            color: var(--text-muted);
+            display: block;
+            margin-top: 0.15rem;
+        }
+
+        .review-message {
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 3.2rem;
+        }
+
+        .rating-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: #f7f1ea;
+            color: var(--accent-dark);
+            padding: 0.35rem 0.8rem;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        .review-form {
+            display: grid;
+            gap: 0.95rem;
+            margin-top: 1.2rem;
+            background: #faf4ea;
+            padding: 1.3rem;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(184, 140, 88, 0.18);
+        }
+
+        .review-form input,
+        .review-form textarea,
+        .review-form select {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+            background: #fff;
+            font-family: inherit;
+            color: var(--text);
+        }
+
+        .review-form button {
+            width: fit-content;
+            background: var(--accent-dark);
+            color: #fff;
+            border: none;
+            border-radius: 999px;
+            padding: 0.75rem 1.3rem;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background 0.18s ease;
+        }
+
+        .review-form button:hover {
+            background: #4d341f;
+        }
+
+        .delete-product-btn {
+            border: 1px solid rgba(177,62,62,0.18);
+            color: var(--danger);
+            background: #fff6f6;
+            border-radius: 999px;
+            padding: 0.68rem 0.9rem;
+            cursor: pointer;
+            font-size: 0.86rem;
+            font-weight: 700;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .delete-product-btn:hover {
+            background: rgba(177,62,62,0.08);
+            transform: translateY(-1px);
+        }
+
+        .delete-review-btn {
+            border: 1px solid rgba(177,62,62,0.18);
+            color: var(--danger);
+            background: #fff6f6;
+            border-radius: 999px;
+            padding: 0.5rem 0.85rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 700;
+            align-self: flex-start;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .delete-review-btn:hover {
+            background: rgba(177,62,62,0.08);
+            transform: translateY(-1px);
+        }
+
+        .map-section {
+            background: var(--surface);
+            border-radius: 1.6rem;
+            margin: 2rem 0 1rem;
+            padding: 1.2rem;
+            box-shadow: 0 16px 32px rgba(98, 70, 46, 0.08);
+            border: 1px solid var(--border);
+        }
+
+        .map-title {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .map-container {
+            border-radius: 1.3rem;
+            overflow: hidden;
+            border: 1px solid rgba(87, 128, 59, 0.14);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            min-height: 320px;
+            border: 0;
+        }
+
+        .btn-map-link {
+            background: var(--accent);
+            color: #fff;
+            border-radius: 999px;
+            padding: 0.55rem 1rem;
+            font-size: 0.82rem;
+            text-decoration: none;
+            margin-left: auto;
+            white-space: nowrap;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #f3e7dd;
+            color: #5e4a32;
+            border-radius: 1.5rem;
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        .toast-msg {
+            position: fixed;
+            bottom: 22px;
+            left: 22px;
+            background: #2a241b;
+            color: #fff;
+            padding: 0.95rem 1.3rem;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            pointer-events: none;
+            font-weight: 600;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: flex-start;
+            padding: 1.2rem;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal-card {
+            background: var(--surface);
+            max-width: 520px;
+            width: 100%;
+            border-radius: 1.8rem;
+            padding: 1.8rem;
+            box-shadow: 0 30px 80px rgba(33, 22, 13, 0.15);
+            margin: 1rem 0 2rem;
+            max-height: calc(100vh - 2rem);
+            overflow-y: auto;
+        }
+
+        .modal-card input,
+        .modal-card textarea {
+            width: 100%;
+            margin: 0.6rem 0;
+            padding: 0.85rem 1rem;
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+            font-family: inherit;
+            color: var(--text);
+            background: #fbf7f2;
+        }
+
+        .modal-card h3 {
+            margin-bottom: 0.8rem;
+            font-size: 1.25rem;
+            color: var(--text);
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 1rem;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 900px) {
+            .hero-highlight {
+                grid-template-columns: 1fr 1fr;
+            }
+            .contact-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .btn-map-link {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .header {
+                padding: 1.5rem 1rem 1.8rem;
+            }
+            .hero-highlight {
+                grid-template-columns: 1fr;
+            }
+            .brand h1 {
+                font-size: 1.75rem;
+            }
+            .products-grid {
+                gap: 1.2rem;
+            }
+            .admin-panel {
+                padding: 1rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="container">
+        <div class="brand">
+            <div class="logo-badge">
+                <img class="company-logo" src="logo.png" alt="Logo UD. Produsen Rumah Kayu">
+                <div>
+                    <div style="font-size:0.95rem; font-weight:700; color:#2d1b0f; letter-spacing:0.2px;">UD. Produsen Rumah Kayu</div>
+                    <div style="font-size:0.78rem; color:#5f4735;">Katalog & Produksi Kayu</div>
+                </div>
+            </div>
+            <div class="badge"><i class="fas fa-certificate"></i> Katalog Resmi & Terpercaya</div>
+        </div>
+        <p class="hero-description">Halaman admin ini hanya untuk pengelola. Pastikan tidak dibagikan kepada pelanggan umum.</p>
+        <div class="hero-highlight">
+            <div class="highlight-card"><i class="fas fa-shield-alt"></i><span>Akses Terbatas</span><small>Hanya admin yang dapat masuk</small></div>
+            <div class="highlight-card"><i class="fas fa-tools"></i><span>Kelola Produk</span><small>Tambah, hapus, dan perbarui katalog</small></div>
+            <div class="highlight-card"><i class="fas fa-comments"></i><span>Moderasi Review</span><small>Hapus review yang tidak sesuai</small></div>
+        </div>
+        <div class="contact-row">
+            <span class="contact-item"><i class="far fa-envelope"></i> produsenrumahkayu5@gmail.com</span>
+            <span class="contact-item"><i class="far fa-clock"></i> Sen-Sab 07.30–16.00 • Minggu 08.00–16.00</span>
+            <a href="https://wa.me/62882008396089?text=Halo%20UD.%20Produsen%20Rumah%20Kayu%2C%20saya%20ingin%20mengelola%20katalog." class="btn-contact"><i class="fab fa-whatsapp"></i> 0882-0083-96089</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div id="adminZone"></div>
+    <div class="section-title"><i class="fas fa-cubes"></i> Koleksi Unggulan & Contoh Produk</div>
+    <p style="color: var(--text-muted); margin-top:0.75rem; max-width:760px;">Berikut beberapa contoh produk yang bisa dikatalogkan. Sesuaikan nama, deskripsi, harga, dan stok sesuai kebutuhan.</p>
+    <div id="productsGrid" class="products-grid">
+        <div class="product-card">
+            <div class="product-img"><span style="font-size:1rem; font-weight:700;">Meja Kayu Jati</span></div>
+            <div class="product-info">
+                <h3 class="product-title">Meja Kayu Jati</h3>
+                <p class="product-desc">Meja makan kayu jati solid dengan ukiran halus, cocok untuk ruang makan dan teras.</p>
+                <div class="product-price">Rp 2.450.000</div>
+                <span class="product-stock">Stok tersedia: 12</span>
+                <a class="wa-order" href="https://wa.me/62882008396089?text=Saya%20ingin%20memesan%20Meja%20Kayu%20Jati" target="_blank">Pesan via WhatsApp</a>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-img"><span style="font-size:1rem; font-weight:700;">Lemari Minimalis</span></div>
+            <div class="product-info">
+                <h3 class="product-title">Lemari Minimalis</h3>
+                <p class="product-desc">Lemari serbaguna dengan desain simpel, cocok untuk kamar tidur atau ruang tamu.</p>
+                <div class="product-price">Rp 1.880.000</div>
+                <span class="product-stock">Stok tersedia: 8</span>
+                <a class="wa-order" href="https://wa.me/62882008396089?text=Saya%20ingin%20memesan%20Lemari%20Minimalis" target="_blank">Pesan via WhatsApp</a>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-img"><span style="font-size:1rem; font-weight:700;">Rak Serbaguna</span></div>
+            <div class="product-info">
+                <h3 class="product-title">Rak Serbaguna</h3>
+                <p class="product-desc">Rak kayu dengan beberapa tingkat, ideal untuk menata buku, tanaman, atau dekorasi.</p>
+                <div class="product-price">Rp 1.250.000</div>
+                <span class="product-stock">Stok tersedia: 15</span>
+                <a class="wa-order" href="https://wa.me/62882008396089?text=Saya%20ingin%20memesan%20Rak%20Serbaguna" target="_blank">Pesan via WhatsApp</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="review-section">
+        <div class="section-title"><i class="fas fa-star"></i> Ulasan & Review</div>
+        <p style="color: var(--text-muted); margin-top:0.75rem; max-width:760px;">Admin dapat melihat semua review dan menghapus yang tidak sesuai. Pelanggan umum tetap menulis review di halaman publik.</p>
+        <div class="review-form">
+            <input type="text" id="reviewerName" placeholder="Nama Anda (boleh singkat)">
+            <select id="reviewRating">
+                <option value="5">5 bintang — Sangat memuaskan</option>
+                <option value="4">4 bintang — Puas</option>
+                <option value="3">3 bintang — Cukup</option>
+                <option value="2">2 bintang — Kurang</option>
+                <option value="1">1 bintang — Perbaikan diperlukan</option>
+            </select>
+            <textarea id="reviewMessage" rows="3" placeholder="Tulis review atau testimoni singkat..."></textarea>
+            <button id="submitReviewBtn" type="button"><i class="fas fa-paper-plane"></i> Kirim Review</button>
+            <small style="color: var(--text-muted);">Review dapat ditambahkan oleh admin atau pelanggan.</small>
+        </div>
+        <div id="reviewsGrid" class="review-grid"></div>
+    </div>
+
+    <div class="map-section">
+        <div class="map-title">
+            <i class="fas fa-map-marked-alt" style="color:#c97e2c;"></i> <span>📍 Lokasi Workshop & Showroom</span>
+            <a href="https://share.google/ildNbvJ4LcyyIlz3Z" target="_blank" class="btn-map-link"><i class="fas fa-external-link-alt"></i> Buka di Google Maps</a>
+        </div>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.123456789012!2d111.450123!3d-7.098765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78b8c2f2b7e1b3%3A0x9f8d7c6b5a4e3c2a!2sTrembulrejo%2C%20Ngawen%2C%20Blora%20Regency%2C%20Central%20Java!5e0!3m2!1sen!2sid!4v1718000000000!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="map-credit" style="font-size:0.7rem; margin-top:8px; text-align:right;"><i class="fas fa-location-dot"></i> Trembulrejo, Kec. Ngawen, Kabupaten Blora</div>
+    </div>
+</div>
+
+<footer>
+    <i class="fas fa-copyright"></i> 2023-2025 UD. Produsen Rumah Kayu | Berdiri 2023 | Produk rumah kayu premium dari Blora <br>
+    WhatsApp 0882-0083-96089 | Email: produsenrumahkayu5@gmail.com | Jam: Sen-Sab 07.30-16.00 | Minggu 08.00-16.00
+</footer>
+
+<div id="toastMsg" class="toast-msg"></div>
+<div id="productModal" class="modal">
+    <div class="modal-card">
+        <h3 id="productModalTitle"><i class="fas fa-plus-circle"></i> Tambah Produk Baru</h3>
+        <input type="text" id="prodName" placeholder="Nama produk (contoh: Gazebo Kayu Jati)">
+        <textarea id="prodDesc" rows="2" placeholder="Deskripsi singkat..."></textarea>
+        <input type="text" id="prodPrice" placeholder="Harga (Rp)">
+        <input type="text" id="prodStock" placeholder="Stok (Tersedia / Habis)">
+        <div id="prodImagePasteZone" class="image-paste-zone" tabindex="0">📷 Tempel gambar di sini (Ctrl+V atau klik lalu tempel)</div>
+        <input type="hidden" id="prodImageData">
+        <input type="text" id="prodImage" placeholder="URL foto produk (opsional)">
+        <img id="prodImagePreview" class="image-preview" alt="Preview gambar produk">
+        <small style="font-size:0.85rem; color:#5f4735; margin-top:-0.5rem; display:block;">Cukup tempel gambar dari aplikasi lain, atau masukkan URL gambar jika perlu.</small>
+        <div class="modal-buttons">
+            <button class="btn-admin" id="modalCancelBtn">Batal</button>
+            <button class="btn-admin" id="modalSaveBtn">Simpan Produk</button>
+        </div>
+    </div>
+</div>
+
+<div id="adminModal" class="modal">
+    <div class="modal-card">
+        <h3 id="adminModalTitle"></h3>
+        <div id="adminModalBody"></div>
+        <div class="modal-buttons">
+            <button class="btn-admin" id="adminModalCancelBtn">Batal</button>
+            <button class="btn-admin" id="adminModalSaveBtn">Simpan</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let catalogProducts = [
+        { id: "p1", name: "Rama Kayu Jati", description: "Ukuran 6x4 meter, rangka kayu jati asli, atap sirap.", price: "Rp 18.500.000", stock: "Tersedia", image: "https://via.placeholder.com/480x320/dfd1b3/8a5c29?text=Rama+Kayu+Jati" },
+        { id: "p2", name: "Gazebo Taman", description: "Gazebo minimalis diameter 2.5m, cocok untuk taman.", price: "Rp 4.250.000", stock: "Tersedia", image: "https://via.placeholder.com/480x320/dfd1b3/8a5c29?text=Gazebo+Taman" },
+        { id: "p3", name: "Paviliun Kayu", description: "Model joglo kecil, bahan kayu ulin, kokoh.", price: "Rp 32.000.000", stock: "Habis", image: "https://via.placeholder.com/480x320/dfd1b3/8a5c29?text=Paviliun+Kayu" },
+        { id: "p4", name: "Bangku Kayu Solid", description: "Set bangku panjang dari kayu mahoni.", price: "Rp 1.200.000", stock: "Tersedia", image: "https://via.placeholder.com/480x320/dfd1b3/8a5c29?text=Bangku+Kayu" },
+        { id: "p5", name: "Rumah Kayu Mini", description: "Rumah kayu 3x4 meter, cocok untuk penginapan.", price: "Rp 22.750.000", stock: "Preorder", image: "https://via.placeholder.com/480x320/dfd1b3/8a5c29?text=Rumah+Kayu+Mini" }
+    ];
+
+    let reviews = [
+        { id: 'r1', name: 'Budi', rating: 5, message: 'Pelayanan sangat bagus, desain rumah kayu rapi dan bahan jati berkualitas.', date: '2025-11-12' },
+        { id: 'r2', name: 'Sari', rating: 4, message: 'Proses order custom cepat dan komunikasinya jelas.', date: '2025-12-03' }
+    ];
+
+    const STORAGE_KEY = "ProdusenRumahKayu_Katalog";
+    const REVIEW_STORAGE_KEY = "ProdusenRumahKayu_Reviews";
+    const ADMIN_STORAGE_KEY = "ProdusenRumahKayu_Admins";
+    const DEFAULT_ADMIN = { username: "admin", password: "produen123" };
+
+    let adminAccounts = [ DEFAULT_ADMIN ];
+    let currentAdminUser = null;
+
+    function saveToLocal() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(catalogProducts));
+        } catch (error) {
+            console.error(error);
+            showToast('Gambar terlalu besar untuk disimpan. Gunakan gambar yang lebih kecil atau URL gambar.', 3200);
+        }
+    }
+
+    function loadFromLocal() {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+            try {
+                catalogProducts = JSON.parse(stored);
+            } catch {
+                saveToLocal();
+            }
+        } else {
+            saveToLocal();
+        }
+    }
+
+    function saveReviews() {
+        localStorage.setItem(REVIEW_STORAGE_KEY, JSON.stringify(reviews));
+    }
+
+    function loadReviews() {
+        const stored = localStorage.getItem(REVIEW_STORAGE_KEY);
+        if (stored) {
+            try {
+                const parsed = JSON.parse(stored);
+                if (Array.isArray(parsed)) reviews = parsed;
+            } catch {
+                saveReviews();
+            }
+        } else {
+            saveReviews();
+        }
+    }
+
+    function saveAdminAccounts() {
+        localStorage.setItem(ADMIN_STORAGE_KEY, JSON.stringify(adminAccounts));
+    }
+
+    function loadAdminAccounts() {
+        const stored = localStorage.getItem(ADMIN_STORAGE_KEY);
+        if (stored) {
+            try {
+                const parsed = JSON.parse(stored);
+                if (Array.isArray(parsed) && parsed.length > 0) {
+                    adminAccounts = parsed;
+                } else {
+                    adminAccounts = [DEFAULT_ADMIN];
+                    saveAdminAccounts();
+                }
+            } catch {
+                adminAccounts = [DEFAULT_ADMIN];
+                saveAdminAccounts();
+            }
+        } else {
+            saveAdminAccounts();
+        }
+    }
+
+    function findAdminAccount(username, password) {
+        return adminAccounts.find(acc => acc.username === username && acc.password === password);
+    }
+
+    function findAdminByUsername(username) {
+        return adminAccounts.find(acc => acc.username === username);
+    }
+
+    function resetAdminPassword(username) {
+        if(!username) {
+            showToast('Username admin wajib diisi.', 1800);
+            return;
+        }
+
+        const account = findAdminByUsername(username);
+        if(!account) {
+            showToast('Username admin tidak ditemukan.', 1800);
+            return;
+        }
+
+        const confirmed = window.confirm(`Reset password akun "${username}" ke password default "${DEFAULT_ADMIN.password}"?`);
+        if(!confirmed) return;
+
+        account.password = DEFAULT_ADMIN.password;
+        saveAdminAccounts();
+        showToast(`Password akun "${username}" berhasil direset ke default.`, 2600);
+    }
+
+    function escapeHtml(str) {
+        if(!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if(m === '&') return '&amp;';
+            if(m === '<') return '&lt;';
+            if(m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    function renderProducts() {
+        const grid = document.getElementById("productsGrid");
+        if(!grid) return;
+        if(catalogProducts.length === 0) {
+            grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem;">✨ Belum ada produk. Tambahkan melalui panel admin.</div>`;
+            return;
+        }
+        grid.innerHTML = catalogProducts.map(prod => {
+            const photoUrl = prod.image ? escapeHtml(prod.image) : 'https://via.placeholder.com/480x320/dfd1b3/8a5c29?text=Foto+Produk';
+            return `
+            <div class="product-card">
+                <div class="product-img"><img src="${photoUrl}" alt="Foto ${escapeHtml(prod.name)}"></div>
+                <div class="product-info">
+                    <div class="product-title">${escapeHtml(prod.name)}</div>
+                    <div class="product-desc">${escapeHtml(prod.description)}</div>
+                    <div class="product-price">${escapeHtml(prod.price)}</div>
+                    <div class="product-stock"><i class="fas fa-boxes"></i> Stok: ${escapeHtml(prod.stock)}</div>
+                    <div class="product-actions">
+                        <a href="https://wa.me/62882008396089?text=Halo%20UD.%20Produsen%20Rumah%20Kayu%2C%20saya%20tertarik%20dengan%20produk%20%22${encodeURIComponent(prod.name)}%22%20harga%20${encodeURIComponent(prod.price)}%2C%20apakah%20tersedia%3F" class="wa-order" target="_blank"><i class="fab fa-whatsapp"></i> Pesan via WhatsApp</a>
+                        ${currentAdminUser ? `<div style="display:flex; flex-wrap:wrap; gap:0.6rem; margin-top:0.2rem;"><button class="edit-product-btn" data-id="${prod.id}"><i class="fas fa-edit"></i> Edit</button><button class="delete-product-btn" data-id="${prod.id}"><i class="fas fa-trash-alt"></i> Hapus</button></div>` : ''}
+                    </div>
+                </div>
+            </div>
+        `;
+        }).join('');
+
+        if(currentAdminUser) {
+            document.querySelectorAll('.edit-product-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    openEditProductModal(btn.getAttribute('data-id'));
+                });
+            });
+            document.querySelectorAll('.delete-product-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    deleteProductById(btn.getAttribute('data-id'));
+                });
+            });
+        }
+    }
+
+    function openEditProductModal(id) {
+        const product = catalogProducts.find(p => p.id === id);
+        if(!product) return;
+        const modal = document.getElementById("productModal");
+        const title = document.getElementById("productModalTitle");
+        if(!modal || !title) return;
+
+        document.getElementById("prodName").value = product.name || '';
+        document.getElementById("prodDesc").value = product.description || '';
+        document.getElementById("prodPrice").value = product.price || '';
+        document.getElementById("prodStock").value = product.stock || '';
+        document.getElementById("prodImage").value = product.image && !product.image.startsWith('data:') ? product.image : '';
+        document.getElementById("prodImageData").value = product.image && product.image.startsWith('data:') ? product.image : '';
+        const preview = document.getElementById("prodImagePreview");
+        if(preview) {
+            preview.src = product.image || '';
+            preview.style.display = product.image ? 'block' : 'none';
+        }
+        const pasteZone = document.getElementById("prodImagePasteZone");
+        if(pasteZone) {
+            pasteZone.classList.add('is-active');
+            pasteZone.innerHTML = '✅ Gambar saat ini siap diedit';
+        }
+        title.textContent = 'Edit Produk';
+        modal.dataset.mode = 'edit';
+        modal.dataset.productId = id;
+        modal.style.display = 'flex';
+    }
+
+    function deleteProductById(id) {
+        if(!currentAdminUser) return showToast("Akses ditolak. Login admin terlebih dahulu.", 2000);
+        catalogProducts = catalogProducts.filter(p => p.id !== id);
+        saveToLocal();
+        renderProducts();
+        showToast("✅ Produk berhasil dihapus dari katalog", 1500);
+    }
+
+    function renderReviews() {
+        const grid = document.getElementById("reviewsGrid");
+        if(!grid) return;
+        if(reviews.length === 0) {
+            grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:2rem; color: var(--text-muted);">Belum ada review.</div>`;
+            return;
+        }
+        grid.innerHTML = reviews.map(review => `
+            <div class="review-card">
+                <div class="rating-badge"><i class="fas fa-star"></i> ${review.rating} / 5</div>
+                <h4>${escapeHtml(review.name)}</h4>
+                <small>${escapeHtml(review.date)}</small>
+                <div class="review-message">${escapeHtml(review.message)}</div>
+                ${currentAdminUser ? `<button class="delete-review-btn" data-id="${review.id}">Hapus Review</button>` : ''}
+            </div>
+        `).join('');
+
+        if(currentAdminUser) {
+            document.querySelectorAll('.delete-review-btn').forEach(btn => {
+                btn.addEventListener('click', () => deleteReviewById(btn.getAttribute('data-id')));
+            });
+        }
+    }
+
+    function deleteReviewById(id) {
+        reviews = reviews.filter(r => r.id !== id);
+        saveReviews();
+        renderReviews();
+        showToast('Review berhasil dihapus.', 1700);
+    }
+
+    function addReview(review) {
+        const newReview = { id: 'rev_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6), ...review };
+        reviews.unshift(newReview);
+        saveReviews();
+        renderReviews();
+        showToast('Review berhasil ditambahkan.', 1800);
+    }
+
+    function renderAdminPanel() {
+        const container = document.getElementById("adminZone");
+        if(!container) return;
+        if(!currentAdminUser) {
+            container.innerHTML = `
+                <div class="admin-panel">
+                    <div><i class="fas fa-shield-alt"></i> Panel Admin - Login untuk mengelola katalog produk</div>
+                    <div class="login-form">
+                        <input type="text" id="adminUser" placeholder="Username" autocomplete="off">
+                        <input type="password" id="adminPass" placeholder="Password">
+                        <button class="btn-admin" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Masuk</button>
+                        <button class="btn-admin" type="button" id="forgotPasswordBtn"><i class="fas fa-key"></i> Reset Password</button>
+                    </div>
+                </div>
+            `;
+            document.getElementById("loginBtn")?.addEventListener('click', () => {
+                const user = document.getElementById("adminUser").value.trim();
+                const pass = document.getElementById("adminPass").value;
+                if(findAdminAccount(user, pass)) {
+                    currentAdminUser = user;
+                    renderAdminPanel();
+                    renderProducts();
+                    renderReviews();
+                    showToast("Selamat datang, admin!", 1700);
+                } else {
+                    showToast("Username atau password salah.", 1700);
+                }
+            });
+            document.getElementById("forgotPasswordBtn")?.addEventListener('click', () => {
+                const targetUsername = window.prompt('Masukkan username admin yang ingin direset:');
+                if(!targetUsername) return;
+                resetAdminPassword(targetUsername.trim());
+            });
+        } else {
+            container.innerHTML = `
+                <div class="admin-panel">
+                    <div>
+                        <div style="margin-bottom:0.5rem;"><i class="fas fa-user-cog"></i> Admin aktif: <strong>${escapeHtml(currentAdminUser)}</strong></div>
+                        <div style="font-size:0.95rem; color: var(--text-muted);">Kelola produk, review, dan kontrol akses admin.</div>
+                    </div>
+                    <div style="display:flex; flex-wrap:wrap; gap:0.75rem; justify-content:flex-end;">
+                        <button class="btn-admin" id="addProductBtn"><i class="fas fa-plus"></i> Tambah Produk</button>
+                        <button class="btn-admin" id="addAdminBtn"><i class="fas fa-user-plus"></i> Tambah Admin</button>
+                        <button class="btn-admin" id="changeCredentialBtn"><i class="fas fa-key"></i> Ubah Akun</button>
+                        <button class="btn-admin logout" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    </div>
+                </div>
+            `;
+            document.getElementById("addProductBtn")?.addEventListener('click', openAddProductModal);
+            document.getElementById("addAdminBtn")?.addEventListener('click', () => openAdminDialog('addAdmin'));
+            document.getElementById("changeCredentialBtn")?.addEventListener('click', () => openAdminDialog('changeCredentials'));
+            document.getElementById("logoutBtn")?.addEventListener('click', () => {
+                currentAdminUser = null;
+                renderAdminPanel();
+                renderProducts();
+                renderReviews();
+                showToast('Admin logout. Halaman kembali ke mode tampilan publik.', 1700);
+            });
+        }
+    }
+
+    function openAddProductModal() {
+        const modal = document.getElementById("productModal");
+        if(modal) {
+            document.getElementById("prodName").value = '';
+            document.getElementById("prodDesc").value = '';
+            document.getElementById("prodPrice").value = '';
+            document.getElementById("prodStock").value = '';
+            resetProductImageInputs();
+            modal.style.display = 'flex';
+        }
+    }
+
+    function openAdminDialog(type) {
+        const modal = document.getElementById("adminModal");
+        const title = document.getElementById("adminModalTitle");
+        const body = document.getElementById("adminModalBody");
+        if(!modal || !title || !body) return;
+
+        if(type === 'addAdmin') {
+            title.textContent = 'Tambah Admin Baru';
+            body.innerHTML = `
+                <input type="text" id="adminModalNewUser" placeholder="Username admin baru" autocomplete="off">
+                <input type="password" id="adminModalNewPass" placeholder="Password baru">
+                <input type="password" id="adminModalNewPassConfirm" placeholder="Konfirmasi password">
+            `;
+            document.getElementById("adminModalSaveBtn").textContent = 'Simpan Admin';
+        } else {
+            title.textContent = 'Ubah Username / Password Admin';
+            body.innerHTML = `
+                <input type="password" id="adminModalCurrentPass" placeholder="Password saat ini">
+                <input type="text" id="adminModalNewUser" placeholder="Username baru" autocomplete="off" value="${escapeHtml(currentAdminUser)}">
+                <input type="password" id="adminModalNewPass" placeholder="Password baru">
+                <input type="password" id="adminModalNewPassConfirm" placeholder="Konfirmasi password">
+            `;
+            document.getElementById("adminModalSaveBtn").textContent = 'Perbarui Akun';
+        }
+        modal.dataset.mode = type;
+        modal.style.display = 'flex';
+    }
+
+    function closeAdminModal() {
+        const modal = document.getElementById("adminModal");
+        if(modal) modal.style.display = 'none';
+    }
+
+    function handleAdminDialogSave() {
+        const modal = document.getElementById("adminModal");
+        if(!modal) return;
+        const mode = modal.dataset.mode;
+        if(mode === 'addAdmin') {
+            const username = document.getElementById("adminModalNewUser").value.trim();
+            const password = document.getElementById("adminModalNewPass").value;
+            const confirm = document.getElementById("adminModalNewPassConfirm").value;
+            if(!username || !password) return showToast('Username dan password wajib diisi', 1800);
+            if(password !== confirm) return showToast('Password konfirmasi tidak cocok', 1800);
+            if(findAdminByUsername(username)) return showToast('Username sudah digunakan.', 2000);
+            adminAccounts.push({ username, password });
+            saveAdminAccounts();
+            closeAdminModal();
+            showToast('Admin baru berhasil ditambahkan.', 2000);
+        } else {
+            const currentPass = document.getElementById("adminModalCurrentPass").value;
+            const username = document.getElementById("adminModalNewUser").value.trim();
+            const password = document.getElementById("adminModalNewPass").value;
+            const confirm = document.getElementById("adminModalNewPassConfirm").value;
+            const currentAccount = findAdminByUsername(currentAdminUser);
+            if(!currentAccount || currentAccount.password !== currentPass) return showToast('Password saat ini tidak valid', 2000);
+            if(!username || !password) return showToast('Username dan password baru wajib diisi', 1800);
+            if(password !== confirm) return showToast('Password konfirmasi tidak cocok', 1800);
+            const existing = findAdminByUsername(username);
+            if(existing && existing.username !== currentAdminUser) return showToast('Username baru sudah digunakan.', 2000);
+            currentAccount.username = username;
+            currentAccount.password = password;
+            currentAdminUser = username;
+            saveAdminAccounts();
+            closeAdminModal();
+            renderAdminPanel();
+            showToast('Username dan password admin diperbarui.', 2200);
+        }
+    }
+
+    function addNewProduct(product) {
+        if(!currentAdminUser) return showToast("Hanya admin yang dapat menambah produk", 2000);
+        const newId = "prod_" + Date.now() + "_" + Math.random().toString(36).substr(2, 6);
+        catalogProducts.push({ id: newId, ...product });
+        saveToLocal();
+        renderProducts();
+        closeModal();
+        showToast('Produk baru berhasil ditambahkan.', 1800);
+    }
+
+    function updateProduct(id, product) {
+        if(!currentAdminUser) return showToast("Hanya admin yang dapat mengubah produk", 2000);
+        const index = catalogProducts.findIndex(p => p.id === id);
+        if(index === -1) return;
+        catalogProducts[index] = { ...catalogProducts[index], ...product };
+        saveToLocal();
+        renderProducts();
+        closeModal();
+        showToast('Produk berhasil diperbarui.', 1800);
+    }
+
+    function closeModal() {
+        const modal = document.getElementById("productModal");
+        if(modal) {
+            modal.dataset.mode = '';
+            modal.dataset.productId = '';
+            resetProductImageInputs();
+            const title = document.getElementById("productModalTitle");
+            if(title) title.textContent = 'Tambah Produk Baru';
+            modal.style.display = 'none';
+        }
+    }
+
+    function resetProductImageInputs() {
+        const pasteZone = document.getElementById("prodImagePasteZone");
+        const preview = document.getElementById("prodImagePreview");
+        const imageInput = document.getElementById("prodImage");
+        const imageDataInput = document.getElementById("prodImageData");
+        if(pasteZone) {
+            pasteZone.classList.remove('is-active');
+            pasteZone.innerHTML = '📷 Tempel gambar di sini (Ctrl+V atau klik lalu tempel)';
+        }
+        if(preview) {
+            preview.src = '';
+            preview.style.display = 'none';
+        }
+        if(imageInput) imageInput.value = '';
+        if(imageDataInput) imageDataInput.value = '';
+    }
+
+    function compressImageDataUrl(dataUrl, maxWidth = 900, quality = 0.72) {
+        return new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => {
+                const ratio = Math.min(1, maxWidth / img.width);
+                const canvas = document.createElement('canvas');
+                canvas.width = Math.max(1, Math.round(img.width * ratio));
+                canvas.height = Math.max(1, Math.round(img.height * ratio));
+                const ctx = canvas.getContext('2d');
+                if(!ctx) {
+                    resolve(dataUrl);
+                    return;
+                }
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                resolve(canvas.toDataURL('image/jpeg', quality));
+            };
+            img.onerror = () => resolve(dataUrl);
+            img.src = dataUrl;
+        });
+    }
+
+    async function handleProductImagePaste(event) {
+        const items = event.clipboardData?.items;
+        if(!items) return;
+        for(const item of items) {
+            if(item.type.startsWith('image/')) {
+                event.preventDefault();
+                const file = item.getAsFile();
+                if(!file) return;
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const dataUrl = reader.result;
+                    const compressedDataUrl = await compressImageDataUrl(dataUrl);
+                    const imageDataInput = document.getElementById("prodImageData");
+                    const imageInput = document.getElementById("prodImage");
+                    const preview = document.getElementById("prodImagePreview");
+                    const pasteZone = document.getElementById("prodImagePasteZone");
+                    if(imageDataInput) imageDataInput.value = compressedDataUrl;
+                    if(imageInput) imageInput.value = '';
+                    if(preview) {
+                        preview.src = compressedDataUrl;
+                        preview.style.display = 'block';
+                    }
+                    if(pasteZone) {
+                        pasteZone.classList.add('is-active');
+                        pasteZone.innerHTML = '✅ Gambar siap dipakai';
+                    }
+                    showToast('Gambar berhasil ditempel dan dipersingkat untuk disimpan.', 1600);
+                };
+                reader.readAsDataURL(file);
+                return;
+            }
+        }
+    }
+
+    function showToast(msg, duration=2000) {
+        const toast = document.getElementById("toastMsg");
+        if(toast) {
+            toast.textContent = msg;
+            toast.style.opacity = "1";
+            setTimeout(() => toast.style.opacity = "0", duration);
+        }
+    }
+
+    function getProfessionalShareUrl() {
+        let currentUrl = window.location.href;
+        if(currentUrl.startsWith('file://')) {
+            return "https://ud-produsenrumahkayu.com/katalog";
+        }
+        return currentUrl.split('?')[0].split('#')[0];
+    }
+
+    async function shareCatalogProfessional() {
+        const shareUrl = getProfessionalShareUrl();
+        const shareText = "UD. Produsen Rumah Kayu • Katalog Produk Rumah Kayu Berkualitas dari Blora. Lihat koleksi gazebo, rumah kayu, dan furniture. Order via WhatsApp.";
+        if(navigator.share) {
+            try {
+                await navigator.share({
+                    title: "Katalog Admin - UD. Produsen Rumah Kayu",
+                    text: shareText,
+                    url: shareUrl,
+                });
+                showToast("Link dibagikan!", 1500);
+            } catch (e) {
+                copyToClipboardProfessional(shareUrl);
+            }
+        } else {
+            copyToClipboardProfessional(shareUrl);
+        }
+    }
+
+    function copyToClipboardProfessional(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            showToast("✅ Link disalin ke clipboard", 2500);
+        }).catch(() => {
+            showToast("🔗 Salin manual: " + text, 3000);
+        });
+    }
+
+    window.onload = () => {
+        loadFromLocal();
+        loadAdminAccounts();
+        loadReviews();
+        renderAdminPanel();
+        renderProducts();
+        renderReviews();
+
+        document.getElementById("shareCatalogBtn")?.addEventListener("click", shareCatalogProfessional);
+        document.getElementById("modalCancelBtn")?.addEventListener("click", () => {
+            resetProductImageInputs();
+            closeModal();
+        });
+        document.getElementById("modalSaveBtn")?.addEventListener("click", () => {
+            const name = document.getElementById("prodName").value.trim();
+            const desc = document.getElementById("prodDesc").value.trim();
+            const price = document.getElementById("prodPrice").value.trim();
+            const stock = document.getElementById("prodStock").value.trim();
+            const imageUrl = document.getElementById("prodImage").value.trim();
+            const imageDataUrl = document.getElementById("prodImageData").value.trim();
+            const image = imageDataUrl || imageUrl;
+
+            if(!name || !price) {
+                showToast("Nama produk dan harga wajib diisi", 1500);
+                return;
+            }
+
+            const modal = document.getElementById("productModal");
+            const mode = modal?.dataset.mode;
+            const productId = modal?.dataset.productId;
+            const payload = { name, description: desc || "Produk andalan rumah kayu", price, stock: stock || "Tersedia", image };
+
+            if(mode === 'edit' && productId) {
+                updateProduct(productId, payload);
+            } else {
+                addNewProduct(payload);
+            }
+        });
+        document.getElementById("prodImagePasteZone")?.addEventListener("paste", handleProductImagePaste);
+        document.getElementById("prodImagePasteZone")?.addEventListener("click", () => {
+            document.getElementById("prodImagePasteZone")?.focus();
+        });
+        document.getElementById("adminModalCancelBtn")?.addEventListener("click", closeAdminModal);
+        document.getElementById("adminModalSaveBtn")?.addEventListener("click", handleAdminDialogSave);
+        document.getElementById("submitReviewBtn")?.addEventListener("click", () => {
+            const name = document.getElementById("reviewerName").value.trim() || 'Anonim';
+            const rating = parseInt(document.getElementById("reviewRating").value, 10) || 5;
+            const message = document.getElementById("reviewMessage").value.trim();
+            if(!message) return showToast("Silakan tulis review atau testimoni terlebih dahulu.", 1700);
+            addReview({ name, rating, message, date: new Date().toISOString().split('T')[0] });
+            document.getElementById("reviewerName").value = '';
+            document.getElementById("reviewRating").value = '5';
+            document.getElementById("reviewMessage").value = '';
+        });
+        window.onclick = (e) => {
+            if (e.target === document.getElementById("productModal") || e.target === document.getElementById("adminModal")) {
+                closeModal();
+                closeAdminModal();
+            }
+        };
+    };
+</script>
+</body>
+</html>
