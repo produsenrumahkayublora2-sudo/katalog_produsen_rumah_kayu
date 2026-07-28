@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>UD. Produsen Rumah Kayu - Katalog Resmi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: 'Inter', sans-serif;
+            --bg: #f5ecde;
+            --surface: #ffffff;
+            --surface-soft: #f7efe2;
+            --surface-strong: #e8d5bc;
+            --text: #332715;
+            --text-muted: #6f5d4a;
+            --accent: #b07e48;
+            --accent-dark: #8b5a30;
+            --success: #25d366;
+            --danger: #b13e3e;
+            --border: rgba(131, 86, 44, 0.15);
+            --shadow: 0 18px 45px rgba(78, 49, 24, 0.10);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; min-height: 100vh; background: radial-gradient(circle at top, #fff7ee 0%, var(--bg) 55%); color: var(--text); line-height: 1.6; }
+        body::before { content: ''; position: fixed; inset: 0; background: url('logo.png') center top / 34rem no-repeat; opacity: 0.05; pointer-events: none; z-index: -1; }
+        .container { width: min(1180px, calc(100% - 2rem)); margin: 0 auto; padding: 1.2rem 0 2rem; }
+        .header { background: linear-gradient(135deg, #e7c1a0 0%, #a86a34 100%); color: #2a160e; padding: 2.2rem 1.5rem 2.4rem; border-radius: 2rem; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+        .header::before { content: ''; position: absolute; top: 50%; left: 50%; width: 42rem; height: 42rem; transform: translate(-50%, -50%); background: url('logo.png') center center / contain no-repeat; opacity: 0.06; pointer-events: none; }
+        .brand { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; align-items: center; }
+        .logo-badge { display: inline-flex; align-items: center; gap: 0.95rem; padding: 0.8rem 1rem; border-radius: 1.4rem; background: rgba(255,255,255,0.94); border: 1px solid rgba(171, 116, 62, 0.2); }
+        .company-logo { width: 64px; height: 64px; object-fit: cover; border-radius: 18px; background: #fff; }
+        .brand h1 { font-size: clamp(1.9rem, 4vw, 2.65rem); letter-spacing: -0.5px; line-height: 1.05; font-weight: 900; max-width: 720px; color: #2d1b0f; }
+        .badge { background: rgba(255, 247, 229, 0.98); color: #5a3821; padding: 0.55rem 1rem; border-radius: 999px; font-size: 0.86rem; font-weight: 800; border: 1px solid rgba(171, 116, 62, 0.18); }
+        .hero-description { margin-top: 1.4rem; max-width: 720px; color: #3f2a1b; font-size: 1rem; font-weight: 700; }
+        .hero-highlight { margin-top: 1.8rem; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+        .highlight-card { background: rgba(255, 248, 235, 0.95); border: 1px solid rgba(171, 116, 62, 0.18); border-radius: 1.4rem; padding: 1rem 1.2rem; display: flex; gap: 0.75rem; align-items: center; }
+        .highlight-card i { color: #f0d1a4; font-size: 1.3rem; min-width: 36px; }
+        .highlight-card span { font-weight: 700; color: #2f1d10; }
+        .highlight-card small { color: #5d4734; margin-top: 0.2rem; font-size: 0.92rem; }
+        .contact-row { margin-top: 1.8rem; background: rgba(255,255,255,0.98); color: var(--text); border-radius: 1.5rem; padding: 1rem 1.2rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.9rem; box-shadow: 0 18px 40px rgba(0,0,0,0.08); }
+        .contact-item { display: inline-flex; align-items: center; gap: 0.65rem; padding: 0.55rem 0.95rem; border-radius: 999px; background: #fff8f0; color: #3f2a1b; font-size: 0.95rem; font-weight: 600; }
+        .btn-contact { display: inline-flex; align-items: center; justify-content: center; background: #25d366; color: #fff; text-decoration: none; padding: 0.85rem 1.2rem; border-radius: 999px; font-weight: 700; font-size: 0.95rem; box-shadow: 0 14px 28px rgba(37,211,102,0.2); transition: background 0.18s ease, transform 0.18s ease; }
+        .btn-contact:hover { background: #1ca65a; transform: translateY(-1px); }
+        .share-section { display: flex; justify-content: flex-end; margin-top: 1.4rem; }
+        .btn-share { background: var(--accent); border: none; padding: 0.75rem 1.5rem; border-radius: 999px; color: #fff; font-weight: 700; cursor: pointer; transition: transform 0.18s ease, background 0.18s ease; font-size: 0.95rem; box-shadow: 0 10px 25px rgba(0,0,0,0.12); }
+        .btn-share:hover { background: #964d22; transform: translateY(-1px); }
+        .section-title { margin: 2rem 0 0.8rem; font-weight: 800; font-size: 1.7rem; letter-spacing: -0.4px; display: inline-flex; align-items: center; gap: 0.75rem; color: var(--text); }
+        .section-title::before { content: ''; width: 3.5rem; height: 3px; background: var(--accent); border-radius: 999px; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.6rem; margin: 1.5rem 0 2rem; }
+        .product-card { background: var(--surface); border-radius: 1.6rem; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.25s ease, box-shadow 0.25s ease; border: 1px solid var(--border); display: flex; flex-direction: column; min-height: 100%; }
+        .product-card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(72, 43, 19, 0.12); }
+        .product-img {
+            background: linear-gradient(180deg, rgba(185,110,47,0.14), rgba(120,78,38,0.08));
+            min-height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-dark);
+            overflow: hidden;
+            padding: 0;
+        }
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            min-height: 220px;
+            object-fit: contain;
+            background: #fff;
+        }
+        .product-info { padding: 1.25rem 1.35rem 1.4rem; display: flex; flex-direction: column; gap: 0.75rem; flex: 1; }
+        .product-title { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.3px; color: var(--text); }
+        .product-desc {
+            font-size: 0.94rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            white-space: pre-line;
+            word-break: break-word;
+        }
+        .product-price { font-weight: 800; color: var(--accent-dark); font-size: 1.08rem; }
+        .product-stock { font-size: 0.78rem; background: #f4ece5; color: var(--text); padding: 0.35rem 0.85rem; border-radius: 999px; border: 1px solid rgba(181, 95, 32, 0.12); }
+        .wa-order { display: inline-flex; align-items: center; justify-content: center; background: var(--success); color: #fff; text-decoration: none; padding: 0.7rem 0.95rem; border-radius: 999px; font-weight: 700; font-size: 0.9rem; }
+        .review-section { margin: 2rem 0 1rem; }
+        .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.4rem; margin-top: 1rem; }
+        .review-card { background: #fff; border-radius: 1.4rem; border: 1px solid rgba(171, 136, 93, 0.14); padding: 1.35rem; box-shadow: 0 14px 30px rgba(96, 62, 30, 0.05); display: flex; flex-direction: column; gap: 0.85rem; }
+        .review-card h4 { font-size: 1rem; font-weight: 700; color: var(--text); }
+        .review-card small { color: var(--text-muted); display: block; margin-top: 0.15rem; }
+        .review-message { color: var(--text); line-height: 1.7; min-height: 3.2rem; }
+        .rating-badge { display: inline-flex; align-items: center; gap: 0.35rem; background: #f7f1ea; color: var(--accent-dark); padding: 0.35rem 0.8rem; border-radius: 999px; font-size: 0.82rem; font-weight: 700; }
+        .review-form { display: grid; gap: 0.95rem; margin-top: 1.2rem; background: #faf4ea; padding: 1.3rem; border-radius: 1.5rem; border: 1px solid rgba(184, 140, 88, 0.18); }
+        .review-form input, .review-form textarea, .review-form select { width: 100%; padding: 0.85rem 1rem; border-radius: 1rem; border: 1px solid var(--border); background: #fff; font-family: inherit; color: var(--text); }
+        .review-form button { width: fit-content; background: var(--accent-dark); color: #fff; border: none; border-radius: 999px; padding: 0.75rem 1.3rem; cursor: pointer; font-weight: 700; transition: background 0.18s ease; }
+        .review-form button:hover { background: #4d341f; }
+        .map-section { background: var(--surface); border-radius: 1.6rem; margin: 2rem 0 1rem; padding: 1.2rem; box-shadow: 0 16px 32px rgba(98, 70, 46, 0.08); border: 1px solid var(--border); }
+        .map-title { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; font-weight: 700; font-size: 1.05rem; margin-bottom: 1rem; color: var(--text); }
+        .map-container { border-radius: 1.3rem; overflow: hidden; border: 1px solid rgba(87, 128, 59, 0.14); }
+        .map-container iframe { width: 100%; min-height: 320px; border: 0; }
+        .btn-map-link { background: var(--accent); color: #fff; border-radius: 999px; padding: 0.55rem 1rem; font-size: 0.82rem; text-decoration: none; margin-left: auto; white-space: nowrap; }
+        footer { text-align: center; margin-top: 2rem; padding: 1.5rem; background: #f3e7dd; color: #5e4a32; border-radius: 1.5rem; font-size: 0.88rem; line-height: 1.5; }
+        .toast-msg { position: fixed; bottom: 22px; left: 22px; background: #2a241b; color: #fff; padding: 0.95rem 1.3rem; border-radius: 999px; font-size: 0.9rem; z-index: 999; opacity: 0; transition: opacity 0.25s ease; pointer-events: none; font-weight: 600; }
+        @media (max-width: 900px) { .hero-highlight { grid-template-columns: 1fr 1fr; } .contact-row { flex-direction: column; align-items: stretch; } .btn-map-link { width: 100%; margin-left: 0; } }
+        @media (max-width: 680px) { .header { padding: 1.5rem 1rem 1.8rem; } .hero-highlight { grid-template-columns: 1fr; } .brand h1 { font-size: 1.75rem; } .products-grid { gap: 1.2rem; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="brand">
+                <div class="logo-badge">
+                    <img class="company-logo" src="logo.png" alt="Logo UD. Produsen Rumah Kayu">
+                    <div>
+                        <div style="font-size:0.95rem; font-weight:700; color:#2d1b0f; letter-spacing:0.2px;">UD. Produsen Rumah Kayu</div>
+                        <div style="font-size:0.78rem; color:#5f4735;">Katalog & Produksi Kayu</div>
+                    </div>
+                </div>
+                <div class="badge"><i class="fas fa-certificate"></i> Katalog Resmi & Terpercaya</div>
+            </div>
+            <p class="hero-description">UD. Produsen Rumah Kayu – Berdiri sejak 2023, berdedikasi pada pembuatan rumah kayu, gazebo, dan paviliun dari jati pilihan. Setiap produk dibuat dengan rapi, desain modern, dan proses custom yang jelas.</p>
+            <div class="hero-highlight">
+                <div class="highlight-card"><i class="fas fa-shield-alt"></i><span>Kepercayaan Terjaga</span><small>Material kuat & pengerjaan teliti</small></div>
+                <div class="highlight-card"><i class="fas fa-paint-roller"></i><span>Desain Rapi</span><small>Detail finishing estetis dan fungsional</small></div>
+                <div class="highlight-card"><i class="fas fa-comments-dollar"></i><span>Order Custom</span><small>Diskusi kebutuhan via WhatsApp</small></div>
+            </div>
+            <div class="contact-row">
+                <span class="contact-item"><i class="far fa-envelope"></i> produsenrumahkayu5@gmail.com</span>
+                <span class="contact-item"><i class="far fa-clock"></i> Sen-Sab 07.30–16.00 • Minggu 08.00–16.00</span>
+                <a href="https://wa.me/62882008396089?text=Halo%20UD.%20Produsen%20Rumah%20Kayu%2C%20saya%20ingin%20pesanan%20custom." class="btn-contact"><i class="fab fa-whatsapp"></i> 0882-0083-96089</a>
+            </div>
+            <div class="share-section">
+                <button class="btn-share" id="shareCatalogBtn"><i class="fas fa-share-alt"></i> Salin Link Katalog Profesional</button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="section-title"><i class="fas fa-cubes"></i> Koleksi Unggulan</div>
+        <div id="productsGrid" class="products-grid"></div>
+        <div class="review-section">
+            <div class="section-title"><i class="fas fa-star"></i> Ulasan & Review</div>
+            <p style="color: var(--text-muted); margin-top:0.75rem; max-width:760px;">Biarkan pelanggan baru melihat pengalaman nyata. Kunjungan pelanggan bisa langsung menambahkan review.</p>
+            <div class="review-form">
+                <input type="text" id="reviewerName" placeholder="Nama Anda (boleh singkat)">
+                <select id="reviewRating">
+                    <option value="5">5 bintang — Sangat memuaskan</option>
+                    <option value="4">4 bintang — Puas</option>
+                    <option value="3">3 bintang — Cukup</option>
+                    <option value="2">2 bintang — Kurang</option>
+                    <option value="1">1 bintang — Perbaikan diperlukan</option>
+                </select>
+                <textarea id="reviewMessage" rows="3" placeholder="Tulis review atau testimoni singkat..."></textarea>
+                <button id="submitReviewBtn" type="button"><i class="fas fa-paper-plane"></i> Kirim Review</button>
+                <small style="color: var(--text-muted);">Review dapat diisi oleh konsumen atau ditambahkan oleh admin melalui halaman admin.</small>
+            </div>
+            <div id="reviewsGrid" class="review-grid"></div>
+        </div>
+        <div class="map-section">
+            <div class="map-title"><i class="fas fa-map-marked-alt" style="color:#c97e2c;"></i> <span>📍 Lokasi Workshop & Showroom</span><a href="https://share.google/ildNbvJ4LcyyIlz3Z" target="_blank" class="btn-map-link"><i class="fas fa-external-link-alt"></i> Buka di Google Maps</a></div>
+            <div class="map-container"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.123456789012!2d111.450123!3d-7.098765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78b8c2f2b7e1b3%3A0x9f8d7c6b5a4e3c2a!2sTrembulrejo%2C%20Ngawen%2C%20Blora%20Regency%2C%20Central%20Java!5e0!3m2!1sen!2sid!4v1718000000000!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe></div>
+            <div class="map-credit" style="font-size:0.7rem; margin-top:8px; text-align:right;"><i class="fas fa-location-dot"></i> Trembulrejo, Kec. Ngawen, Kabupaten Blora</div>
+        </div>
+    </div>
+    <footer><i class="fas fa-copyright"></i> 2023-2025 UD. Produsen Rumah Kayu | Berdiri 2023 | Produk rumah kayu premium dari Blora <br>WhatsApp 0882-0083-96089 | Email: produsenrumahkayu5@gmail.com | Jam: Sen-Sab 07.30-16.00 | Minggu 08.00-16.00</footer>
+    <div id="toastMsg" class="toast-msg"></div>
+    <script>
+        let catalogProducts = [
+            { id: "p1", name: "Rama Kayu Jati", description: "Ukuran 6x4 meter, rangka kayu jati asli, atap sirap.", price: "Rp 18.500.000", stock: "Tersedia", image: "https://via.placeholder.com/480x320/dfd1b3/8a5c29?text=Rama+Kayu+Jati" },
+            { id: "p2", name: "Gazebo Taman", description: "Gazebo minimalis diameter 2.5m, cocok untuk taman.", price: "Rp 4.250.000", stock: "Tersedia", image: "https://via.placeholder.com/480x320/dfd1b3/8a5c29?text=Gazebo+Taman" },
+            { id: "p3", name: "Paviliun Kayu", description: "Model joglo kecil, bahan kayu ulin, kokoh.", price: "Rp 32.000.000", stock: "Habis", image: "https://via.placeholder.com/480x320/dfd1b3/8a5c29?text=Paviliun+Kayu" },
+            { id: "p4", name: "Bangku Kayu Solid", description: "Set bangku panjang dari kayu mahoni.", price: "Rp 1.200.000", stock: "Tersedia", image: "https://via.placeholder.com/480x320/dfd1b3/8a5c29?text=Bangku+Kayu" },
+            { id: "p5", name: "Rumah Kayu Mini", description: "Rumah kayu 3x4 meter, cocok untuk penginapan.", price: "Rp 22.750.000", stock: "Preorder", image: "https://via.placeholder.com/480x320/dfd1b3/8a5c29?text=Rumah+Kayu+Mini" }
+        ];
+        let reviews = [
+            { id: 'r1', name: 'Budi', rating: 5, message: 'Pelayanan sangat bagus, desain rumah kayu rapi dan bahan jati berkualitas.', date: '2025-11-12' },
+            { id: 'r2', name: 'Sari', rating: 4, message: 'Proses order custom cepat dan komunikasinya jelas.', date: '2025-12-03' }
+        ];
+        const STORAGE_KEY = "ProdusenRumahKayu_Katalog";
+        const REVIEW_STORAGE_KEY = "ProdusenRumahKayu_Reviews";
+        function saveToLocal() { localStorage.setItem(STORAGE_KEY, JSON.stringify(catalogProducts)); }
+        function loadFromLocal() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored) {
+                try { catalogProducts = JSON.parse(stored); } catch { saveToLocal(); }
+            } else { saveToLocal(); }
+        }
+        function saveReviews() { localStorage.setItem(REVIEW_STORAGE_KEY, JSON.stringify(reviews)); }
+        function loadReviews() {
+            const stored = localStorage.getItem(REVIEW_STORAGE_KEY);
+            if (stored) {
+                try { const parsed = JSON.parse(stored); if (Array.isArray(parsed)) reviews = parsed; } catch { saveReviews(); }
+            } else { saveReviews(); }
+        }
+        function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, (m) => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;'); }
+        function renderProducts() {
+            const grid = document.getElementById("productsGrid");
+            if (!grid) return;
+            if (catalogProducts.length === 0) { grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem;">✨ Belum ada produk. Admin dapat menambahkan katalog melalui halaman admin.</div>`; return; }
+            grid.innerHTML = catalogProducts.map(prod => {
+                const photoUrl = prod.image ? escapeHtml(prod.image) : 'https://via.placeholder.com/480x320/dfd1b3/8a5c29?text=Foto+Produk';
+                return `
+                <div class="product-card">
+                    <div class="product-img"><img src="${photoUrl}" alt="Foto ${escapeHtml(prod.name)}"></div>
+                    <div class="product-info">
+                        <div class="product-title">${escapeHtml(prod.name)}</div>
+                        <div class="product-desc">${escapeHtml(prod.description)}</div>
+                        <div class="product-price">${escapeHtml(prod.price)}</div>
+                        <div class="product-stock"><i class="fas fa-boxes"></i> Stok: ${escapeHtml(prod.stock)}</div>
+                        <a href="https://wa.me/62882008396089?text=Halo%20UD.%20Produsen%20Rumah%20Kayu%2C%20saya%20tertarik%20dengan%20produk%20%22${encodeURIComponent(prod.name)}%22%20harga%20${encodeURIComponent(prod.price)}%2C%20apakah%20tersedia%3F" class="wa-order" target="_blank"><i class="fab fa-whatsapp"></i> Pesan via WhatsApp</a>
+                    </div>
+                </div>
+            `;
+            }).join('');
+        }
+        function renderReviews() {
+            const grid = document.getElementById("reviewsGrid");
+            if (!grid) return;
+            if (reviews.length === 0) { grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:2rem; color: var(--text-muted);">Belum ada review. Ajak pelanggan menulis pengalaman mereka.</div>`; return; }
+            grid.innerHTML = reviews.map(review => `
+                <div class="review-card">
+                    <div class="rating-badge"><i class="fas fa-star"></i> ${review.rating} / 5</div>
+                    <h4>${escapeHtml(review.name)}</h4>
+                    <small>${escapeHtml(review.date)}</small>
+                    <div class="review-message">${escapeHtml(review.message)}</div>
+                </div>
+            `).join('');
+        }
+        function addReview(review) { reviews.unshift(review); saveReviews(); renderReviews(); showToast('Terima kasih! Review telah ditambahkan.', 1800); }
+        function showToast(msg, duration=2000) { const toast = document.getElementById("toastMsg"); if (toast) { toast.textContent = msg; toast.style.opacity = "1"; setTimeout(() => toast.style.opacity = "0", duration); } }
+        function getProfessionalShareUrl() { let currentUrl = window.location.href; if (currentUrl.startsWith('file://')) return "https://ud-produsenrumahkayu.com/katalog"; return currentUrl.split('?')[0].split('#')[0]; }
+        async function shareCatalogProfessional() { const shareUrl = getProfessionalShareUrl(); const shareText = "UD. Produsen Rumah Kayu • Katalog Produk Rumah Kayu Berkualitas dari Blora. Lihat koleksi gazebo, rumah kayu, dan furniture. Order via WhatsApp."; if (navigator.share) { try { await navigator.share({ title: "Katalog Resmi - UD. Produsen Rumah Kayu", text: shareText, url: shareUrl, }); showToast("Terima kasih telah membagikan katalog!", 1500); } catch (e) { copyToClipboardProfessional(shareUrl); } } else { copyToClipboardProfessional(shareUrl); } }
+        function copyToClipboardProfessional(text) { navigator.clipboard.writeText(text).then(() => { showToast("✅ Link katalog profesional disalin!", 2500); }).catch(() => { showToast("🔗 Salin manual: " + text, 3000); }); }
+        window.onload = () => { loadFromLocal(); loadReviews(); renderProducts(); renderReviews(); document.getElementById("shareCatalogBtn")?.addEventListener("click", shareCatalogProfessional); document.getElementById("submitReviewBtn")?.addEventListener("click", () => { const name = document.getElementById("reviewerName").value.trim() || 'Anonim'; const rating = parseInt(document.getElementById("reviewRating").value, 10) || 5; const message = document.getElementById("reviewMessage").value.trim(); if (!message) { showToast("Silakan tulis review atau testimoni terlebih dahulu.", 1700); return; } addReview({ id: 'rev_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6), name, rating, message, date: new Date().toISOString().split('T')[0] }); document.getElementById("reviewerName").value = ''; document.getElementById("reviewRating").value = '5'; document.getElementById("reviewMessage").value = ''; }); };
+    </script>
+</body>
+</html>
